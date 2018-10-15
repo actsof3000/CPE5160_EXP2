@@ -1,0 +1,11 @@
+".\Objects\LCD.obj",
+".\Objects\main.obj",
+".\Objects\UART.obj",
+".\Objects\Util.obj",
+".\Objects\Long_Serial_In.obj",
+".\Objects\memory_test.obj",
+".\Objects\print_bytes.obj",
+".\Objects\SPI.obj",
+".\Objects\SD.obj" 
+TO ".\Objects\EXP2" 
+PRINT(".\Listings\EXP2.m51")

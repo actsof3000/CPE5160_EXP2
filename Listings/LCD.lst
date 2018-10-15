@@ -1,0 +1,90 @@
+C51 COMPILER V9.59.0.0   LCD                                                               10/13/2018 19:33:38 PAGE 1   
+
+
+C51 COMPILER V9.59.0.0, COMPILATION OF MODULE LCD
+OBJECT MODULE PLACED IN .\Objects\LCD.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE LCD.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\LCD.l
+                    -st) TABS(2) OBJECT(.\Objects\LCD.obj)
+
+line level    source
+
+   1          //Riley Maersch
+   2          #include "LCD.h"
+   3          #include "Exp_1_Fall_2018/Main.h"
+   4          #include "Exp_1_Fall_2018/PORT.h"
+   5          #include "Util.h"
+   6          
+   7          void LCD_Write_Command(uint8_t value)
+   8          {
+   9   1        RS = 0;
+  10   1        E = 1;
+  11   1        P0 = value;
+  12   1        E = 0;
+  13   1        P0 = 0xFF;
+  14   1        delay_ms(3);
+  15   1      }
+  16          
+  17          void LCD_Write_Text(uint8_t value)
+  18          {
+  19   1        RS = 1;
+  20   1        E = 1;
+  21   1        P0 = value;
+  22   1        E = 0;
+  23   1        P0 = 0xFF;
+  24   1        delay_ms(3);
+  25   1      }
+  26          
+  27          void LCD_Print(uint8_t* string, uint8_t lineNum)
+  28          {
+  29   1        uint8_t i = 0;
+  30   1        if(lineNum == 1)
+  31   1          LCD_Write_Command(0x80);
+  32   1        else
+  33   1          LCD_Write_Command(0xC0);
+  34   1        while(string[i])
+  35   1        {
+  36   2          LCD_Write_Text(string[i]);
+  37   2          i++;
+  38   2        }
+  39   1      }
+  40          
+  41          void LCD_Clear(void)
+  42          {
+  43   1        LCD_Write_Command(0x01);
+  44   1        delay_ms(3);  
+  45   1      }
+  46          
+  47          void LCD_Init(void) 
+  48          {
+  49   1        delay_ms(30); //delay after power up 
+  50   1        LCD_Write_Command(0x38);  // constant better than 0x3C
+  51   1        delay_ms(5);    // greater than 4.1ms delay
+  52   1        LCD_Write_Command(0x38);  // Function Set repeated 4 times
+  53   1        delay_ms(1);    // greater than 100us delay
+  54   1        LCD_Write_Command(0x38); 
+C51 COMPILER V9.59.0.0   LCD                                                               10/13/2018 19:33:38 PAGE 2   
+
+  55   1        delay_ms(1);
+  56   1        LCD_Write_Command(0x38);  
+  57   1        delay_ms(1);
+  58   1        LCD_Write_Command(0x0C);  // Display on, cursor off
+  59   1        delay_ms(1);
+  60   1        LCD_Write_Command(0x01);  // display clear
+  61   1        delay_ms(3);    // wait until memory cleared
+  62   1        LCD_Write_Command(0x06);  // Entry mode set, Increment
+  63   1        delay_ms(1);
+  64   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    166    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       4
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

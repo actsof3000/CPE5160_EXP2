@@ -1,0 +1,58 @@
+C51 COMPILER V9.59.0.0   MAIN                                                              10/13/2018 19:33:38 PAGE 1   
+
+
+C51 COMPILER V9.59.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include "Exp_1_Fall_2018/Main.h"
+   2          #include "Exp_1_Fall_2018/PORT.h"
+   3          #include "stdio.h"
+   4          #include "UART.h"
+   5          #include "Util.h"
+   6          #include "LCD.h"
+   7          #include "Exp_1_Fall_2018/print_bytes.h"
+   8          #include "Exp_1_Fall_2018/memory_test.h"
+   9          
+  10          //Riley Maersch
+  11          void main()
+  12          {
+  13   1        uint8_t string[] = "This is a test";
+  14   1      //  uint8_t *ptr;
+  15   1      //  UART_Initialization((uint16_t)9600);
+  16   1        LCD_Init();
+  17   1        GREENLED = 0;
+  18   1        delay_ms(1000);
+  19   1        GREENLED = 1;
+  20   1      
+  21   1        LCD_Print(string, 1);
+  22   1        
+  23   1      //  ptr = code_memory_init();
+  24   1      //  print_memory(ptr, 80);
+  25   1      //  UART_Transmit('\n');
+  26   1      //  ptr = xdata_memory_init();
+  27   1      //  print_memory(ptr, 80);
+  28   1        
+  29   1        
+  30   1         
+  31   1        while(1) 
+  32   1        { 
+  33   2        } 
+  34   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     44    ----
+   CONSTANT SIZE    =     15    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      15
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
